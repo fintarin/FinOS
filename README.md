@@ -20,8 +20,8 @@ cd finos
 
 ### Build
 
-./build.sh
+./scripts/build.sh
 
 ### Run
 
-./run.sh
+./scripts/run.sh
