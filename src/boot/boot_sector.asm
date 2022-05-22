@@ -1,23 +1,20 @@
 [ org 0x7c00 ]
 
-mov ah, 0x0e
+mov bx, BOOT_BEGIN_MSG
+call print_string
 
-mov bx, boot_str
-print_loop:
-  mov al, [bx]
-  cmp al, 0
-  je print_loop_end
-
-  int 0x10
-
-  add bx, 1
-  jmp print_loop
-print_loop_end:
+mov bx, BOOT_END_MSG
+call print_string
 
 jmp $
 
-boot_str:
-  db 'Booting OS', 0
+%include 'print_string.asm'
 
-times 510 - ($-$$) db 0
+BOOT_BEGIN_MSG:
+  db 'Booting OS...', 0x0a, 0x0d, 0
+
+BOOT_END_MSG:
+  db 'OS booted!', 0x0a, 0x0d, 0
+
+times 510 - ($ - $$) db 0
 dw 0xaa55

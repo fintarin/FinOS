@@ -3,4 +3,4 @@ if [ -d "./build" ]; then
 fi
 mkdir build
 
-nasm -f bin ./src/boot/boot_sector.asm -o ./build/boot_sector.bin
+nasm -i src/boot/ -f bin ./src/boot/boot_sector.asm -o ./build/boot_sector.bin
