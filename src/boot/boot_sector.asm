@@ -1,16 +1,14 @@
-mov ah, 0x0e ; tty mode
-mov al, 'H'
-int 0x10
-mov al, 'e'
-int 0x10
-mov al, 'l'
-int 0x10
-int 0x10 ; 'l' is still on al, remember?
-mov al, 'o'
+[ org 0x7c00 ]
+
+mov ah, 0x0e
+
+mov al, [the_secret]
 int 0x10
 
-jmp $ ; jump to current address = infinite loop
+jmp $
 
-; padding and magic number
+the_secret:
+  db 'X'
+
 times 510 - ($-$$) db 0
-dw 0xaa55 
+dw 0xaa55
